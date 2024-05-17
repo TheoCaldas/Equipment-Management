@@ -1,8 +1,13 @@
 import { Injectable, NotFoundException, ConflictException } from '@nestjs/common';
-import { UserDTO, UserUpdateDTO } from './dto/user.dto';
+import { UserCreateDTO, UserUpdateDTO } from './dto/user.dto';
 import { RepositoryService } from 'src/repository/repository.service';
 import { Prisma } from '@prisma/client';
 
+
+/* 
+    User Service handles /user CRUD requests. 
+    Connects to database via Repository Service. 
+*/
 @Injectable()
 export class UserService {
 
@@ -20,7 +25,7 @@ export class UserService {
         return user
     }
 
-    async createUser(user: UserDTO){
+    async createUser(user: UserCreateDTO){
         try {
             return await this.repoService.user.create({ data: user })
         } 
