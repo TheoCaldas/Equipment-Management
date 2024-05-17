@@ -5,6 +5,7 @@ const repo = new RepositoryService();
 async function seed() {
     // Restarts DB
     await repo.user.deleteMany()
+    await repo.equipment.deleteMany()
 }
 
 seed()

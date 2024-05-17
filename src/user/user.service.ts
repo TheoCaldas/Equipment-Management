@@ -1,8 +1,6 @@
-import { Injectable, NotFoundException, ConflictException } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { UserCreateDTO, UserUpdateDTO } from './dto/user.dto';
 import { RepositoryService } from 'src/repository/repository.service';
-import { Prisma } from '@prisma/client';
-
 
 /* 
     User Service handles /user CRUD requests. 
@@ -30,7 +28,7 @@ export class UserService {
             return await this.repoService.user.create({ data: user })
         } 
         catch (error) {
-            this.handleConflict(error)
+            this.repoService.handleConflict(error, "CPF or email already taken")
         }
     }
 
@@ -42,7 +40,7 @@ export class UserService {
             });
         }
         catch (error) {
-            this.handleNotFound(error, cpf)
+            this.repoService.handleNotFound(error, `User with CPF ${cpf} not found`)
         }
     }
 
@@ -53,24 +51,7 @@ export class UserService {
             });
         }
         catch (error) {
-            this.handleNotFound(error, cpf)
+            this.repoService.handleNotFound(error, `User with CPF ${cpf} not found`)
         }
-    }
-
-    // Mark: - Internal Prisma Error Handlers
-    private handleConflict(error: any){
-        if (error instanceof Prisma.PrismaClientKnownRequestError &&
-            error.code === 'P2002') {
-              throw new ConflictException('CPF or email already taken');
-        }
-        throw error;
-    }
-
-    private handleNotFound(error: any, cpf: string){
-        if (error instanceof Prisma.PrismaClientKnownRequestError &&
-            error.code === 'P2025') {
-            throw new NotFoundException(`User with CPF ${cpf} not found`);
-        }
-        throw error;
     }
 }

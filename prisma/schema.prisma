@@ -17,3 +17,11 @@ model User {
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
 }
+
+model Equipment {
+  id          Int         @id @default(autoincrement())
+  type        String      @unique
+  amount      Int         
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
