@@ -1,7 +1,9 @@
 import { 
     Body, Controller, Param, 
     Get, Post, Patch, Delete,
-    ValidationPipe
+    ValidationPipe,
+    ConflictException,
+    BadRequestException
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserDTO, UserUpdateDTO } from './dto/user.dto';
@@ -35,8 +37,17 @@ export class UserController {
 
     @Post()
     createUser(@Body(ValidationPipe) user: UserDTO){
-        return this.userService.createUser(user)
+        try {
+            return this.userService.createUser(user)
+        } catch (error) { 
+            // if email or cpf conflict, throw bad request
+            if (error instanceof ConflictException) {
+              throw new BadRequestException(error.message);
+            }
+            throw error;
+        }
     }
+
 
     @Patch(':cpf')
     updateUser(@Param('cpf') cpf: string, @Body(ValidationPipe) update: UserUpdateDTO){
