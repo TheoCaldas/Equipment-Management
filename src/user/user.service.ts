@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { UserCreateDTO, UserUpdateDTO } from './dto/user.dto';
-import { RepositoryService } from 'src/repository/repository.service';
+import { RepositoryService } from '../repository/repository.service';
 
 /* 
     User Service handles /user CRUD requests. 

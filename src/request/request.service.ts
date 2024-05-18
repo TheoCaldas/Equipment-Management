@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
-import { RepositoryService } from 'src/repository/repository.service';
-import { UserService } from 'src/user/user.service';
-import { EquipmentService } from 'src/equipment/equipment.service';
+import { RepositoryService } from '../repository/repository.service';
+import { UserService } from '../user/user.service';
+import { EquipmentService } from '../equipment/equipment.service';
 import { RequestCreateDTO } from './dto/request.dto';
 
 /* 

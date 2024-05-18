@@ -2,7 +2,7 @@
 
 Esse projeto implementa um serviço backend RESTful para a seguinte modelagem:
 
-![alt text](modeling.png)
+![alt text](img/modeling.png)
 
 ## Como executar
 
@@ -82,3 +82,5 @@ O código foi escrito em Nest.js, utilizando a arquitetura de Module/Controller/
 ## Testes
 
 O projeto foi desenvolvido iterativamente, e possui uma cobertura de testes ponta-a-ponta (e2e). 
+
+![alt text](img/tests.png)

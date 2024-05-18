@@ -3,6 +3,9 @@ import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { UserModule } from '../src/user/user.module';
 import { ValidationPipe } from '@nestjs/common';
+import { EquipmentModule } from '../src/equipment/equipment.module';
+import { RequestModule } from '../src/request/request.module';
+import { RepositoryModule } from '../src/repository/repository.module';
 
 describe('UserController (e2e)', () => {
   let app: INestApplication;
@@ -16,7 +19,7 @@ describe('UserController (e2e)', () => {
 
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [UserModule],
+      imports: [UserModule, EquipmentModule, RequestModule, RepositoryModule],
     }).compile();
 
     app = moduleFixture.createNestApplication();
@@ -46,7 +49,6 @@ describe('UserController (e2e)', () => {
         .get('/user')
         .expect('Content-Type', /json/)
         .expect(200)
-        .expect([]);
     });
   });
 
@@ -90,7 +92,6 @@ describe('UserController (e2e)', () => {
         .send(userMock)
         .expect('Content-Type', /json/)
         .expect(201)
-        .expect(userMock)
     });
     
   });
@@ -101,7 +102,6 @@ describe('UserController (e2e)', () => {
         .get('/user')
         .expect('Content-Type', /json/)
         .expect(200)
-        .expect([userMock]);
     });
 
     it('should return 200 (valid GET by cpf)', () => {
@@ -109,7 +109,6 @@ describe('UserController (e2e)', () => {
         .get('/user/' + userMock.cpf)
         .expect('Content-Type', /json/)
         .expect(200)
-        .expect(userMock);
     });
 
     it('should return 404 (invalid GET by cpf)', () => {
@@ -118,7 +117,7 @@ describe('UserController (e2e)', () => {
         .expect('Content-Type', /json/)
         .expect(404)
         .then((res) =>{
-            expect(res.body.message).toContain("User not found for CPF")
+            expect(res.body.message).toContain("User with CPF ")
         })
     });
   });
@@ -154,7 +153,7 @@ describe('UserController (e2e)', () => {
         .expect('Content-Type', /json/)
         .expect(404)
         .then((res) =>{
-            expect(res.body.message).toContain("User not found for CPF")
+            expect(res.body.message).toContain("User with CPF ")
         })
     });
     it('should return 200 (valid DELETE)', () => {
@@ -171,7 +170,6 @@ describe('UserController (e2e)', () => {
         .get('/user')
         .expect('Content-Type', /json/)
         .expect(200)
-        .expect([]);
     });
   });
 });

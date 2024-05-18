@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { RepositoryService } from 'src/repository/repository.service';
+import { RepositoryService } from '../repository/repository.service';
 import { EquipmentCreateDTO, EquipmentUpdateDTO } from './dto/equipment.dto';
 import { NotFoundException } from '@nestjs/common'; 
 
