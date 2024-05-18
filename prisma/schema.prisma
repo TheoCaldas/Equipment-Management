@@ -16,12 +16,25 @@ model User {
   password    String  
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
+  requests    Request[]
 }
 
 model Equipment {
   id          Int         @id @default(autoincrement())
   type        String      @unique
-  amount      Int         
+  total       Int         
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  requests    Request[]
+}
+
+model Request {
+  id          Int         @id @default(autoincrement())
+  amount      Int
+  userCPF     String
+  user        User        @relation(fields: [userCPF], references: [cpf])
+  equipType   String      
+  equip       Equipment   @relation(fields: [equipType], references: [type])
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
 }

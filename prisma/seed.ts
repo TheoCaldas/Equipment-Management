@@ -6,6 +6,7 @@ async function seed() {
     // Restarts DB
     await repo.user.deleteMany()
     await repo.equipment.deleteMany()
+    await repo.request.deleteMany()
 }
 
 seed()

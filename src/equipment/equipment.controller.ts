@@ -8,6 +8,14 @@ import {
 import { EquipmentService } from './equipment.service';
 import { EquipmentCreateDTO, EquipmentUpdateDTO } from './dto/equipment.dto';
 
+/* 
+    Equipment Controller accept /equipment routes, which are handled by Equipment Service.
+    - GET /equipment
+    - GET /equipment/:type
+    - POST /equipment (with EquipmentCreateDTO body)
+    - PATCH /equipment/:type (with EquipmentUpdateDTO body)
+    - DELETE /equipment/:type
+*/
 @Controller('equipment')
 export class EquipmentController {
 
