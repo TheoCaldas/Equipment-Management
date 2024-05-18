@@ -4,9 +4,9 @@ const repo = new RepositoryService();
 
 export async function seed() {
     // Restarts DB
+    await repo.request.deleteMany()
     await repo.user.deleteMany()
     await repo.equipment.deleteMany()
-    await repo.request.deleteMany()
 }
 
 seed()
