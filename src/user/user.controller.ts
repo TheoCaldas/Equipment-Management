@@ -8,9 +8,8 @@ import {
 import { UserService } from './user.service';
 import { UserCreateDTO, UserUpdateDTO } from './dto/user.dto';
 
-
 /* 
-    User Controller accept /user routes, which are handled by User Service.
+    User Controller accept /user endpoints, which are handled by User Service.
     - GET /user
     - GET /user/:cpf
     - POST /user (with UserCreateDTO body)

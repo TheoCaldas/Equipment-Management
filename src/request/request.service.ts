@@ -4,6 +4,10 @@ import { UserService } from 'src/user/user.service';
 import { EquipmentService } from 'src/equipment/equipment.service';
 import { RequestCreateDTO } from './dto/request.dto';
 
+/* 
+    Request Service handles /request CRUD requests. 
+    Connects to database via Repository Service. 
+*/
 @Injectable()
 export class RequestService {
 

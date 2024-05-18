@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsNumber } from "class-validator"
+import { IsString, IsNotEmpty, IsNumber, IsPositive } from "class-validator"
 import { PartialType } from "@nestjs/mapped-types"
  
 /*
@@ -10,7 +10,7 @@ import { PartialType } from "@nestjs/mapped-types"
 
     Requirements:
     - Type string must not be empty.
-    - Total must be a number. 
+    - Total must be positive number (greater than zero). 
 */
 export class EquipmentCreateDTO{
     @IsString()
@@ -18,6 +18,7 @@ export class EquipmentCreateDTO{
     type: string
 
     @IsNumber()
+    @IsPositive()
     total: number
 }
 

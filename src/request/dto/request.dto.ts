@@ -1,11 +1,16 @@
-import { IsString, IsNotEmpty, IsNumber, IsNumberString, Length} from "class-validator"
+import { IsString, IsNotEmpty, IsNumber, IsNumberString, Length, IsPositive} from "class-validator"
  
 /*
     Request Data Transfer Object  
-    that represents valid "/equipment (POST)" JSON body requests.
+    that represents valid "/request (POST)" JSON body requests.
 
     Class validator decorators automatically throw HTTP errors 
     when used with ValidationPipe.
+
+     Requirements:
+    - User CPF string must contain 11 digits. 
+    - Equip Type string must not be empty. 
+    - Amount must be positive number (greater than zero). 
 */
 export class RequestCreateDTO{
 
@@ -20,5 +25,6 @@ export class RequestCreateDTO{
     equipType: string
 
     @IsNumber()
+    @IsPositive()
     amount: number
 }

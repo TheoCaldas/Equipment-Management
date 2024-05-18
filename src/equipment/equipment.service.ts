@@ -3,6 +3,10 @@ import { RepositoryService } from 'src/repository/repository.service';
 import { EquipmentCreateDTO, EquipmentUpdateDTO } from './dto/equipment.dto';
 import { NotFoundException } from '@nestjs/common'; 
 
+/* 
+    Equipment Service handles /equipment CRUD requests. 
+    Connects to database via Repository Service. 
+*/
 @Injectable()
 export class EquipmentService {
 
